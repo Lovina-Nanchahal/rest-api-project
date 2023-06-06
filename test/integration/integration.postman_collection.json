@@ -1,0 +1,330 @@
+{
+  "info": {
+    "_postman_id": "84647193-b19f-45ce-bdd7-53126271cd3a",
+    "name": "demo tests",
+    "description": "Collection for demo tests",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "T1.01 Ok: create-recipe",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response has recipe\", function () {",
+              "    const response = pm.response.json()",
+              "    pm.expect(response).not.to.equal(null);",
+              "});",
+              "",
+              "pm.test(\"Response has id\", function () {",
+              "    const response = pm.response.json()",
+              "    pm.expect(response.id).not.to.equal(null);",
+              "});",
+              "",
+              "pm.test(\"Response has recipeName\", function () {",
+              "    const response = pm.response.json()",
+              "    pm.expect(response.recipeName).not.to.equal(null);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\t    \"recipeName\": \"recipe-name-1\", \r\n     \"recipeType\": \"recipe-type-1\", \r\n     \"noOfServings\": 3, \r\n      \"ingredients\": [{\r\n            \"ingredientName\": \"ingredient-name-1\"\r\n      }],\r\n       \"instructions\": [{\r\n            \"instructionName\": \"instruction-name-1\"\r\n      }]\r\n     }"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/addRecipe",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "addRecipe"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "T1.02 Ok: update-recipe",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response has recipe\", function () {",
+              "    const response = pm.response.json()",
+              "    pm.expect(response).not.to.equal(null);",
+              "});",
+              "",
+              "pm.test(\"Response has id\", function () {",
+              "    const response = pm.response.json()",
+              "    pm.expect(response.id).to.equal(1);",
+              "});",
+              "",
+              "pm.test(\"Response has contractantId\", function () {",
+              "    const response = pm.response.json()",
+              "    pm.expect(response.recipeName).to.equal(\"recipe-name-2\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\t \r\n    \"recipeName\": \"recipe-name-2\", \r\n     \"recipeType\": \"recipe-type-2\", \r\n     \"noOfServings\": 2, \r\n      \"ingredients\": [{\r\n            \"ingredientName\": \"ingredient-name-2\"    }],\r\n       \"instructions\": [{\r\n            \"instructionName\": \"instruction-name-2\" \r\n      }]\r\n     }"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/updateRecipe/1",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "updateRecipe/1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "T1.03 Ok: get-recipe",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response has recipe\", function () {",
+              "    const response = pm.response.json()",
+              "    pm.expect(response).not.to.equal(null);",
+              "});",
+              "",
+              "pm.test(\"Response has id\", function () {",
+              "    const response = pm.response.json()",
+              "    pm.expect(response.id).to.equal(1);",
+              "});",
+              "",
+              "pm.test(\"Response has recipeName\", function () {",
+              "    const response = pm.response.json()",
+              "    pm.expect(response.recipeName).to.equal(\"Pasta\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{baseUrl}}/getRecipe/1",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "/getRecipe/1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "T1.04 Ok: get-all-recipes",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response has recipe\", function () {",
+              "    const response = pm.response.json();",
+              "    pm.expect(response).not.to.equal(null);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{baseUrl}}/getAllRecipes",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "/getAllRecipes"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "T1.05 Ok: delete-recipe",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{baseUrl}}/deleteRecipe/3",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "/deleteRecipe/3"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}
